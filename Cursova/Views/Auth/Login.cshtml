@@ -1,0 +1,26 @@
+﻿@model User
+@{
+    ViewData["Title"] = "Вхід";
+}
+
+<h1>Вхід</h1>
+
+<form asp-action="Login" asp-controller="Auth" method="post">
+    <div asp-validation-summary="All" class="text-danger"></div>
+
+    <div class="form-group">
+        <label asp-for="Email" class="control-label"></label>
+        <input asp-for="Email" class="form-control" />
+        <span asp-validation-for="Email" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Password" class="control-label"></label>
+        <input asp-for="Password" class="form-control" />
+        <span asp-validation-for="Password" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <button type="submit" class="btn btn-primary">Увійти</button>
+    </div>
+</form>
