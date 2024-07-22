@@ -14,11 +14,4 @@ namespace Cursova.Models
         public string Password { get; set; }
         public UserRole Role { get; set; } = UserRole.User;
     }
-    public enum UserRole
-    {
-        Owner,
-        Admin,
-        Operator,
-        User
-    }
 }

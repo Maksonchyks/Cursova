@@ -26,7 +26,7 @@ namespace Cursova.Controllers
                 if (user != null)
                 {
                     var role = user.Role.ToString().ToLower();
-                    return RedirectToAction("Index", "Role"); // Приклад перенаправлення на домашню сторінку залежно від ролі
+                    return RedirectToAction("Index", "Role"); 
                 }
                 ModelState.AddModelError(string.Empty, "Неправильний емейл або пароль.");
             }
@@ -56,7 +56,7 @@ namespace Cursova.Controllers
                     {
                         Email = model.Email,
                         Password = model.Password,
-                        Role = UserRole.User // Початкова роль може бути встановлена як UserRole.User або інша за вашим вибором
+                        Role = UserRole.User
                     };
                     _context.Users.Add(newUser);
                     _context.SaveChanges();
