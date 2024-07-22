@@ -8,7 +8,6 @@ using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
 
-
 //Додавання конфігураційногофайлу
 builder.Configuration.AddJsonFile("appsettings.json", optional: false, reloadOnChange: true);
 
