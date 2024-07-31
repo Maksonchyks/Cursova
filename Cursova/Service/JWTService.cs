@@ -25,9 +25,9 @@ namespace Cursova.Service
 
             var claims = new[]
             {
-                new Claim(ClaimTypes.Name, email),
-                new Claim(ClaimTypes.Role, role)
-            };
+        new Claim(ClaimTypes.Name, email),
+        new Claim(ClaimTypes.Role, role)
+    };
 
             var tokenDescriptor = new SecurityTokenDescriptor
             {
@@ -40,8 +40,8 @@ namespace Cursova.Service
 
             var token = tokenHandler.CreateToken(tokenDescriptor);
             return tokenHandler.WriteToken(token);
-            
         }
+
 
     }
 }
