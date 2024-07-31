@@ -12,7 +12,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Configuration.AddJsonFile("appsettings.json", optional: false, reloadOnChange: true);
 
 
-// Add services to the container.
+// додавання служб
 builder.Services.AddControllersWithViews();
 builder.Services.AddScoped<ICustomerService, CustomerService>();
 builder.Services.AddScoped<ISupplierService, SupplierService>();
@@ -22,20 +22,21 @@ builder.Services.AddScoped<ISalesDealService, SalesDealService>();
 
 //підключення конфігів до класів
 builder.Services.Configure<Config>(builder.Configuration.GetSection("Project"));
+
 var jwtSettings = builder.Configuration.GetSection("JwtSettings").Get<JWTSettings>();
 builder.Services.AddSingleton(jwtSettings);
 
 //налаштування джвт токен
-builder.Services.AddSingleton(new JWTService(jwtSettings.Secret, jwtSettings.Issuer, jwtSettings.Audience));
+builder.Services.AddSingleton(new JWTService(jwtSettings.SecretKey, jwtSettings.Issuer, jwtSettings.Audience));
 
-builder.Services.AddControllersWithViews();
+//налаштування аутентифікації джвт
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     .AddJwtBearer(options =>
     {
         options.TokenValidationParameters = new TokenValidationParameters
         {
             ValidateIssuerSigningKey = true,
-            IssuerSigningKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(jwtSettings.Secret)),
+            IssuerSigningKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(jwtSettings.SecretKey)),
             ValidateIssuer = false,
             ValidateAudience = false
         };

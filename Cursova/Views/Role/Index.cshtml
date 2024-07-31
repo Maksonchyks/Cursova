@@ -1,0 +1,21 @@
+﻿@{
+    ViewData["Title"] = "Сторінка ролей";
+}
+
+<h2>Виберіть дію</h2>
+
+<form asp-action="RoleOperation" method="post">
+    <button type="submit" class="btn btn-primary">Керування ролями </button>
+</form>
+
+<form asp-action="TableOperation" method="post">
+    <button type="submit" class="btn btn-primary">Керування таблицями </button>
+</form>
+
+<form asp-action="CrudOperation" method="post">
+    <button type="submit" class="btn btn-primary">Керування даними</button>
+</form>
+
+<form asp-action="CheckData" method="post">
+    <button type="submit" class="btn btn-primary">Перегляд даних</button>
+</form>

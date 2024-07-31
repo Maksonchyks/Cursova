@@ -1,4 +1,5 @@
 ﻿using Cursova.Models;
+using Cursova.Service;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Cursova.Controllers
@@ -6,9 +7,12 @@ namespace Cursova.Controllers
     public class AuthController : Controller
     {
         private readonly AppDbContext _context;
-        public AuthController(AppDbContext context) 
+        private readonly JWTService _jwtService;
+
+        public AuthController(AppDbContext context, JWTService jwtService) 
         {
             _context = context;
+            _jwtService = jwtService;
         }
 
         public IActionResult Login()
@@ -25,7 +29,7 @@ namespace Cursova.Controllers
                 var user = _context.Users.FirstOrDefault(u => u.Email == model.Email && u.Password == model.Password);
                 if (user != null)
                 {
-                    var role = user.Role.ToString().ToLower();
+                    var token = _jwtService.GenerateToken(user.Email, user.Role.ToString());
                     return RedirectToAction("Index", "Role"); 
                 }
                 ModelState.AddModelError(string.Empty, "Неправильний емейл або пароль.");
@@ -56,7 +60,7 @@ namespace Cursova.Controllers
                     {
                         Email = model.Email,
                         Password = model.Password,
-                        Role = UserRole.User
+                        Role = UserRole.User.ToString()
                     };
                     _context.Users.Add(newUser);
                     _context.SaveChanges();

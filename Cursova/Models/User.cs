@@ -12,6 +12,7 @@ namespace Cursova.Models
 
         [Required(ErrorMessage = "Поле Пароль є обов'язковим")]
         public string Password { get; set; }
-        public UserRole Role { get; set; } = UserRole.User;
+        public string Role { get; set; } = UserRole.User.ToString();
+
     }
 }
