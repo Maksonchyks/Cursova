@@ -10,7 +10,35 @@ namespace Cursova.Domain.Repositories.EntityFramework
         public SalesDealService(AppDbContext context) {
             _context = context;
         }
-        
+
+        public void AddSalesDeal(SalesDeal salesDeal)
+        {
+            _context.SalesDeals.Add(salesDeal);
+            _context.SaveChanges();
+        }
+
+        public void UpdateSalesDeal(SalesDeal salesDeal)
+        {
+            var existingSalesDeal = _context.SalesDeals.Find(salesDeal.DealId);
+            if (existingSalesDeal != null)
+            {
+                existingSalesDeal.FrStockId = salesDeal.FrStockId;
+                existingSalesDeal.FrSupplierId = salesDeal.FrSupplierId;
+                existingSalesDeal.FrCustomerId = salesDeal.FrCustomerId;
+                existingSalesDeal.QuantitySold = salesDeal.QuantitySold;
+                _context.SaveChanges();
+            }
+        }
+
+        public void DeleteSalesDeal(int DealId)
+        {
+            var salesDeal = _context.SalesDeals.Find(DealId);
+            if (salesDeal != null)
+            {
+                _context.SalesDeals.Remove(salesDeal);
+                _context.SaveChanges();
+            }
+        }
         //4
         public List<SalesDeal> GetDealsByProductAndSupplier(int productId, int supplierId, DateTime startDate, DateTime endDate)
         {

@@ -23,8 +23,8 @@ public class AppDbContext : DbContext
 
         modelBuilder.Entity<SalesDeal>()
             .HasOne(sd => sd.Stock)
-            .WithOne(st => st.SalesDeal)
-            .HasForeignKey<SalesDeal>(sd => sd.FrStockId);
+            .WithMany(st => st.SalesDeal) // Зміна тут
+            .HasForeignKey(sd => sd.FrStockId);
 
         modelBuilder.Entity<SalesDeal>()
             .HasOne(sd => sd.Supplier)

@@ -1,0 +1,71 @@
+﻿@model Cursova.Models.Customer
+
+<h2>Управління користувачами</h2>
+
+<!-- Форма для створення користувача -->
+<form asp-action="Create" method="post">
+    <div asp-validation-summary="All" class="text-danger"></div>
+
+    <div class="form-group">
+        <label asp-for="CustomerName" class="control-label"></label>
+        <input asp-for="CustomerName" class="form-control" />
+        <span asp-validation-for="CustomerName" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Address" class="control-label"></label>
+        <input asp-for="Address" class="form-control" />
+        <span asp-validation-for="Address" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Phone" class="control-label"></label>
+        <input asp-for="Phone" class="form-control" />
+        <span asp-validation-for="Phone" class="text-danger"></span>
+    </div>
+    <button type="submit" class="btn btn-primary">Створити користувача</button>
+</form>
+
+<hr />
+
+<!-- Форма для редагування користувача -->
+<form asp-action="Update" method="post">
+    <div asp-validation-summary="All" class="text-danger"></div>
+
+    <div class="form-group">
+        <label asp-for="CustomerId" class="control-label"></label>
+        <input asp-for="CustomerId" class="form-control" />
+        <span asp-validation-for="CustomerId" class="text-danger"></span>
+    </div>
+    
+    <div class "form-group">
+        <label asp-for="CustomerName" class="control-label"></label>
+        <input asp-for="CustomerName" class="form-control"></input>
+        <span asp-validation-for="CustomerName" class="text-danger"></span>
+    </div>
+
+    <div class "form-group">
+        <label asp-for="Address" class="control-label"></label>
+        <input asp-for="Address" class="form-control"></input>
+        <span asp-validation-for="Address" class="text-danger"></span>
+    </div>
+
+    <div class "form-group">
+        <label asp-for="Phone" class="control-label"></label>
+        <input asp-for="Phone" class="form-control"></input>
+        <span asp-validation-for="Phone" class="text-danger"></span>
+    </div>
+    <button type="submit" class="btn btn-primary">Редагувати користувача</button>
+</form>
+
+<hr />
+
+<!-- Форма для видалення користувача -->
+<form asp-action="Delete" method="post">
+    <div asp-validation-summary="All" class="text-danger"></div>
+
+    <div>
+        <label asp-for="CustomerId" class="control-label"></label>
+        <input asp-for="CustomerId" class="form-control"></input>
+        <span asp-validation-for="CustomerId" class="text-danger"></span>
+    </div>
+    <button type="submit" class="btn btn-danger">Видалити користувача</button>
+</form>

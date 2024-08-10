@@ -30,7 +30,13 @@ namespace Cursova.Controllers
                 if (user != null)
                 {
                     var token = _jwtService.GenerateToken(user.Email, user.Role.ToString());
-                    return RedirectToAction("Index", "Role"); 
+                    HttpContext.Response.Cookies.Append("JwtToken", token, new CookieOptions
+                    {
+                        HttpOnly = true,
+                        Secure = true,
+                        Expires = DateTimeOffset.UtcNow.AddMinutes(5)
+                    });
+                    return RedirectToAction("RoleIndex", "Role"); 
                 }
                 ModelState.AddModelError(string.Empty, "Неправильний емейл або пароль.");
             }

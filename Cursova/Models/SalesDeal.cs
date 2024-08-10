@@ -10,9 +10,9 @@
         public decimal TotalAmount { get; set; }
         public DateTime OrderDate { get; set; } = DateTime.UtcNow;
 
-        public Customer Customer { get; set; }
-        public Stock Stock { get; set; }
-        public Supplier Supplier { get; set; }
+        public Customer? Customer { get; set; }
+        public Stock? Stock { get; set; }
+        public Supplier? Supplier { get; set; }
     }
 
 }

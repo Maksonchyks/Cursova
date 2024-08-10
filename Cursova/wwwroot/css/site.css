@@ -33,8 +33,16 @@ body {
         text-decoration: underline;
     }
 
+.content {
+    padding-bottom: 100px;
+}
+.Footer
+{
+    padding-top: 100px;
+}
 /* Футер */
 .footer {
+    padding-top: 100px;
     background-color: #f8f8f8;
     padding: 20px 0;
     text-align: center;
@@ -46,3 +54,27 @@ body {
 .footer-content p {
     margin: 5px 0;
 }
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+table, th, td {
+    border: 1px solid black;
+}
+
+th, td {
+    padding: 10px;
+    text-align: left;
+}
+
+th {
+    background-color: #f2f2f2;
+}
+
+tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+

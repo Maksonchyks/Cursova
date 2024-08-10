@@ -4,6 +4,10 @@ namespace Cursova.Domain.Repositories.Abstract
 {
     public interface ICustomerService
     {
+        void AddCustomer(Customer customer);
+        void UpdateCustomer(Customer customer);
+        void DeleteCustomer(int customerId);
+
         //1
         //відомість про найактивніших покупців
         List<Customer> GetMostActiveCustomer();

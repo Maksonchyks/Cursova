@@ -9,8 +9,8 @@
         public int Quantity { get; set; }
         public decimal PurchasePrice { get; set; }
         public decimal SalePrice { get; set; }
-        public Supplier Supplier { get; set; }
-        public SalesDeal SalesDeal { get; set; }
+        public Supplier? Supplier { get; set; }
+        public List<SalesDeal>? SalesDeal { get; set; }
     }
 
 }

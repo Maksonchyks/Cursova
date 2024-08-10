@@ -4,6 +4,9 @@ namespace Cursova.Domain.Repositories.Abstract
 {
     public interface ISalesDealService
     {
+        void AddSalesDeal(SalesDeal salesDeal);
+        void UpdateSalesDeal(SalesDeal salesDeal);
+        void DeleteSalesDeal(int salesDealId);
         //4
 
         //відомість про поставку за айді товару, за постачальником за період

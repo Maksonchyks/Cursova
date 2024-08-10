@@ -10,7 +10,39 @@ namespace Cursova.Domain.Repositories.EntityFramework
         public CustomerService(AppDbContext context) { 
             _context = context;
         }
-        
+        public void AddCustomer(Customer customer)
+        {
+            _context.Customers.Add(customer);
+            _context.SaveChanges();
+        }
+        public void UpdateCustomer(Customer customer)
+        {
+            var existingCustomer = _context.Customers.Find(customer.CustomerId);
+            if (existingCustomer != null)
+            {
+                existingCustomer.CustomerName = customer.CustomerName;
+                existingCustomer.Address = customer.Address;
+                existingCustomer.Phone = customer.Phone;
+                _context.SaveChanges();
+            }
+        }
+        public void DeleteCustomer(int customerId)
+        {
+            var customer = _context.Customers.FirstOrDefault(c => c.CustomerId == customerId);
+            if (customer != null)
+            {
+                _context.Customers.Remove(customer);
+                Console.WriteLine("Customer removed from context.");
+                _context.SaveChanges();
+                Console.WriteLine("Changes saved to the database.");
+            }
+            else
+            {
+                // 
+                Console.WriteLine("Customer not found.");
+            }
+        }
+
         //1
         public List<Customer> GetMostActiveCustomer()
         {

@@ -1,4 +1,109 @@
 ﻿@{
-    ViewData["Title"] = "Сторінка Data";
+    ViewData["Title"] = "Check Data";
+    var customers = ViewData["Customers"] as List<Cursova.Models.Customer>;
+    var salesDeals = ViewData["SalesDeals"] as List<Cursova.Models.SalesDeal>;
+    var stocks = ViewData["Stocks"] as List<Cursova.Models.Stock>;
+    var suppliers = ViewData["Suppliers"] as List<Cursova.Models.Supplier>;
 }
-<h1>Welcome to Data</h1>
+
+<h2>Перегляд даних з таблиць</h2>
+
+<h2>Suppliers</h2>
+<table>
+    <thead>
+        <tr>
+            <th>Supplier ID</th>
+            <th>Supplier Name</th>
+            <th>Address</th>
+            <th>Phone</th>
+        </tr>
+    </thead>
+    <tbody>
+    @foreach (var supplier in suppliers)
+    {
+                <tr>
+                    <td>@supplier.SupplierId</td>
+                    <td>@supplier.SupplierName</td>
+                    <td>@supplier.Address</td>
+                    <td>@supplier.Phone</td>
+                </tr>
+    }
+    </tbody>
+</table>
+<h2>Customers</h2>
+<table>
+    <thead>
+        <tr>
+            <th>Customer Id</td>
+            <th>Customer Name</td>
+            <th>Adress</td>
+            <th>Phone</td>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach(var customer in customers)
+        {
+            <tr>
+                <td>@customer.CustomerId</td>
+                <td>@customer.CustomerName</td>
+                <td>@customer.Address</td>
+                <td>@customer.Phone</td>
+            </tr>
+        }
+    </tbody>
+</table>
+ <h2>Stocks</h2>
+<table>
+    <thead>
+        <tr>
+            <th>Product ID</th>
+            <th>Supplier ID</th>
+            <th>Product Name</th>
+            <th>Unit</th>
+            <th>Quantity</th>
+            <th>Purchase Price</th>
+            <th>Sale Price</th>
+        </tr>
+    </thead>
+    <tbody>
+    @foreach (var stock in stocks)
+    {
+                <tr>
+                    <td>@stock.StockId</td>
+                    <td>@stock.FrSupplierId</td>
+                    <td>@stock.ProductName</td>
+                    <td>@stock.Unit</td>
+                    <td>@stock.Quantity</td>
+                    <td>@stock.PurchasePrice.ToString("F3")</td>
+                    <td>@stock.SalePrice.ToString("F3")</td>
+                </tr>
+    }
+    </tbody>
+</table>
+<h2>Sales Deals</h2>
+<table>
+    <thead>
+        <tr>
+            <th>Deal ID</th>
+            <th>Product ID</th>
+            <th>Supplier ID</th>
+            <th>Customer ID</th>
+            <th>Quantity Sold</th>
+            <th>Total Amount</th>
+        </tr>
+    </thead>
+    <tbody>
+    @foreach (var salesDeal in salesDeals)
+    {
+                <tr>
+                    <td>@salesDeal.DealId</td>
+                    <td>@salesDeal.FrStockId</td>
+                    <td>@salesDeal.FrSupplierId</td>
+                    <td>@salesDeal.FrCustomerId</td>
+                    <td>@salesDeal.QuantitySold</td>
+                    <td>@salesDeal.TotalAmount.ToString("F3")</td>
+                </tr>
+    }
+    </tbody>
+</table>
+

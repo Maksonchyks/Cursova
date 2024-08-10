@@ -69,6 +69,17 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
+app.Use(async (context, next) =>
+{
+    var token = context.Request.Cookies["JwtToken"];
+    if (!string.IsNullOrEmpty(token))
+    {
+        context.Request.Headers.Add("Authorization", "Bearer " + token);
+    }
+    await next();
+});
+
+
 app.UseAuthentication();
 app.UseAuthorization();
 

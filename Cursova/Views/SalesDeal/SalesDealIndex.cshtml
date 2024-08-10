@@ -1,0 +1,78 @@
+﻿@model Cursova.Models.SalesDeal
+
+<h2>Управління угодами</h2>
+
+<!-- Форма для створення угоди -->
+<form asp-action="Create" method="post">
+    <div asp-validation-summary="All" class="text-danger"></div>
+
+    <div class="form-group">
+        <label asp-for="FrStockId" class="control-label"></label>
+        <input asp-for="FrStockId" class="form-control" />
+        <span asp-validation-for="FrStockId" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="FrSupplierId" class="control-label"></label>
+        <input asp-for="FrSupplierId" class="form-control" />
+        <span asp-validation-for="FrSupplierId" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="FrCustomerId" class="control-label"></label>
+        <input asp-for="FrCustomerId" class="form-control" />
+        <span asp-validation-for="FrCustomerId" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="QuantitySold" class="control-label"></label>
+        <input asp-for="QuantitySold" class="form-control" />
+        <span asp-validation-for="QuantitySold" class="text-danger"></span>
+    </div>
+    <button type="submit" class="btn btn-primary">Створити угоду</button>
+</form>
+
+<hr />
+
+<!-- Форма для редагування угоди -->
+<form asp-action="Update" method="post">
+    <div asp-validation-summary="All" class="text-danger"></div>
+
+    <div class="form-group">
+        <label asp-for="DealId" class="control-label"></label>
+        <input asp-for="DealId" class="form-control" />
+        <span asp-validation-for="DealId" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="FrStockId" class="control-label"></label>
+        <input asp-for="FrStockId" class="form-control" />
+        <span asp-validation-for="FrStockId" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="FrSupplierId" class="control-label"></label>
+        <input asp-for="FrSupplierId" class="form-control" />
+        <span asp-validation-for="FrSupplierId" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="FrCustomerId" class="control-label"></label>
+        <input asp-for="FrCustomerId" class="form-control" />
+        <span asp-validation-for="FrCustomerId" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="QuantitySold" class="control-label"></label>
+        <input asp-for="QuantitySold" class="form-control" />
+        <span asp-validation-for="QuantitySold" class="text-danger"></span>
+    </div>
+    <button type="submit" class="btn btn-primary">Редагувати угоду</button>
+</form>
+
+<hr />
+
+<!-- Форма для видалення угоди -->
+<form asp-action="Delete" method="post">
+    <div asp-validation-summary="All" class="text-danger"></div>
+
+    <div class="form-group">
+        <label asp-for="DealId" class="control-label"></label>
+        <input asp-for="DealId" class="form-control" />
+        <span asp-validation-for="DealId" class="text-danger"></span>
+    </div>
+    <button type="submit" class="btn btn-danger">Видалити угоду</button>
+</form>
