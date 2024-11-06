@@ -1,4 +1,5 @@
 ﻿using Cursova.Models;
+using Cursova.ViewModels;
 
 namespace Cursova.Domain.Repositories.Abstract
 {
@@ -7,6 +8,8 @@ namespace Cursova.Domain.Repositories.Abstract
         void AddCustomer(Customer customer);
         void UpdateCustomer(Customer customer);
         void DeleteCustomer(int customerId);
+        public List<Customer> GetCustomers(CustomerViewModel filter);
+
 
         //1
         //відомість про найактивніших покупців

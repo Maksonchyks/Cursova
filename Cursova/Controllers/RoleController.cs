@@ -16,13 +16,13 @@ namespace Cursova.Controllers
         [Authorize(Roles = "Owner,Admin")]
         public IActionResult RoleOperation()
         {
-            return View();
+            return RedirectToAction("AccessIndex", "AccessRole");
         }
 
         [Authorize(Roles = "Owner,Admin")]
         public IActionResult TableOperation()
         {
-            return View();
+            return RedirectToAction("SelectIndex", "SelectData");
         }
 
         [Authorize(Roles = "Owner,Admin,Operator")]

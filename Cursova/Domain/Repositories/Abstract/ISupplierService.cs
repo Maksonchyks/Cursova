@@ -1,4 +1,5 @@
 ﻿using Cursova.Models;
+using Cursova.ViewModels;
 
 namespace Cursova.Domain.Repositories.Abstract
 {
@@ -7,6 +8,8 @@ namespace Cursova.Domain.Repositories.Abstract
         void AddSupplier(Supplier supplier);
         void UpdateSupplier(Supplier supplier);
         void DeleteSupplier(int supplierId);
+        public List<Supplier> GetSupplier(SupplierViewModel filter);
+
         //8
         //отримати угоди і обсяг товарів по аайді постачальника
         List<Supplier> GetProductsBySupplier(int supplierId);

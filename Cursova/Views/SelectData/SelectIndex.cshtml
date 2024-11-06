@@ -1,0 +1,13 @@
+﻿<h2>Виберіть сутність для фільтрації</h2>
+
+<form asp-action="SelectEntity" method="post">
+    <div>
+        <label for="entity">Сутність:</label>
+        <select id="entity" name="entity">
+            <option value="Customer">Клієнти</option>
+            <option value="Supplier">Постачальники</option>
+            <option value="Stock">Склад</option>
+        </select>
+    </div>
+    <button type="submit">Перейти до фільтрації</button>
+</form>

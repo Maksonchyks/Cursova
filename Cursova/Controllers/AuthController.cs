@@ -1,5 +1,6 @@
 ﻿using Cursova.Models;
 using Cursova.Service;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Cursova.Controllers
@@ -20,7 +21,6 @@ namespace Cursova.Controllers
             return View();
         }
 
-        // POST: /auth/login
         [HttpPost]
         public IActionResult Login(User model)
         {
@@ -42,14 +42,27 @@ namespace Cursova.Controllers
             }
             return View(model);
         }
+        [HttpPost]
+        public IActionResult ForgotPassword(string email)
+        {
+            var user = _context.Users.FirstOrDefault(u => u.Email == email);
+            if (user != null)
+            {
+                ViewBag.Message = "Ваш пароль: " + user.Password;
+            }
+            else
+            {
+                ViewBag.Message = "Користувача з таким email не знайдено.";
+            }
+            return View("Login"); 
+        }
 
-        // GET: /auth/register
+
         public IActionResult Register()
         {
             return View();
         }
 
-        // POST: /auth/register
         [HttpPost]
         public IActionResult Register(User model)
         {

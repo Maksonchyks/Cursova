@@ -1,9 +1,11 @@
 ﻿using Cursova.Models;
 using Microsoft.AspNetCore.Mvc;
 using Cursova.Domain.Repositories.Abstract;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Cursova.Controllers.CrudControllers
 {
+    [Authorize]
     public class SupplierController : Controller
     {
         private readonly ISupplierService _supllierService;

@@ -1,5 +1,6 @@
 ﻿using Cursova.Domain.Repositories.Abstract;
 using Cursova.Models;
+using Cursova.ViewModels;
 
 namespace Cursova.Domain.Repositories.EntityFramework
 {
@@ -40,6 +41,42 @@ namespace Cursova.Domain.Repositories.EntityFramework
                 _context.SaveChanges();
             }
         }
+
+        public List<Stock> GetStock(StockViewModel filter)
+        {
+            var query = _context.Stocks.AsQueryable();
+
+            if (!string.IsNullOrEmpty(filter.ProductName))
+            {
+                query = query.Where(s => s.ProductName.Contains(filter.ProductName));
+            }
+
+            if (!string.IsNullOrEmpty(filter.Unit))
+            {
+                query = query.Where(s => s.Unit.Contains(filter.Unit));
+            }
+
+            if (filter.Quantity.HasValue)
+            {
+                query = query.Where(s => s.Quantity == filter.Quantity.Value);
+            }
+
+            if (filter.PurchasePrice.HasValue)
+            {
+                var roundedPurchasePrice = Math.Round(filter.PurchasePrice.Value);
+                query = query.Where(s => Math.Round(s.PurchasePrice) == roundedPurchasePrice);
+            }
+
+            if (filter.SalePrice.HasValue)
+            {
+                var roundedSalePrice = Math.Round(filter.SalePrice.Value);
+                query = query.Where(s => Math.Round(s.SalePrice) == roundedSalePrice);
+            }
+
+            return query.ToList();
+        }
+
+
         public List<Stock> GetProductDetailsBySupplier(int productId)
         {
             return _context.Stocks

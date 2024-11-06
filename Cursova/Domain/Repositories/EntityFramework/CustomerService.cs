@@ -1,6 +1,6 @@
 ﻿using Cursova.Domain.Repositories.Abstract;
 using Cursova.Models;
-using System.Linq;
+using Cursova.ViewModels;
 
 namespace Cursova.Domain.Repositories.EntityFramework
 {
@@ -41,6 +41,28 @@ namespace Cursova.Domain.Repositories.EntityFramework
                 // 
                 Console.WriteLine("Customer not found.");
             }
+        }
+
+        public List<Customer> GetCustomers(CustomerViewModel filter)
+        {
+            var query = _context.Customers.AsQueryable();
+
+            if (!string.IsNullOrEmpty(filter.CustomerName))
+            {
+                query = query.Where(c => c.CustomerName.Contains(filter.CustomerName));
+            }
+
+            if (!string.IsNullOrEmpty(filter.Address))
+            {
+                query = query.Where(c => c.Address.Contains(filter.Address));
+            }
+
+            if (!string.IsNullOrEmpty(filter.Phone))
+            {
+                query = query.Where(c => c.Phone.Contains(filter.Phone));
+            }
+
+            return query.ToList(); 
         }
 
         //1

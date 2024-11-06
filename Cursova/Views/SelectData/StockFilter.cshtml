@@ -1,0 +1,55 @@
+﻿@model Cursova.ViewModels.StockViewModel
+
+<h2>Фільтрація товарів</h2>
+
+<form asp-action="StockFilter" method="post">
+    <div>
+        <label asp-for="ProductName">Назва товару</label>
+        <input asp-for="ProductName" />
+    </div>
+    <div>
+        <label asp-for="Unit">Одиниці</label>
+        <input asp-for="Unit" />
+    </div><div>
+        <label asp-for="Quantity">Кількість</label>
+        <input asp-for="Quantity" />
+    </div><div>
+        <label asp-for="PurchasePrice">Ціна покупки</label>
+        <input asp-for="PurchasePrice" />
+    </div><div>
+        <label asp-for="SalePrice">Ціна продажу</label>
+        <input asp-for="SalePrice" />
+    </div>
+    <button type="submit">Фільтрувати</button>
+</form>
+
+@if (ViewBag.Stocks != null)
+{
+        <table>
+            <thead>
+                <tr>
+                    <th>Назва товару</th>
+                    <th>Одиниці</th>
+                    <th>Кількість</th>
+                    <th>Ціна покупки</th>
+                    <th>Ціна продажу</th>
+                </tr>
+            </thead>
+            <tbody>
+            @foreach (var stock in ViewBag.Stocks)
+            {
+                    <tr>
+                        <td>@stock.ProductName</td>
+                        <td>@stock.Quantity</td>
+                        <td>@stock.Unit</td>
+                        <td>@Math.Round(stock.PurchasePrice)</td>
+                        <td>@Math.Round(stock.SalePrice)</td>
+                    </tr>
+            }
+            </tbody>
+        </table>
+}
+else
+{
+        <p>Товарів не знайдено</p>
+}

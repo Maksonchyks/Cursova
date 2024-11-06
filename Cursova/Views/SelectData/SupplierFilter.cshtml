@@ -1,0 +1,46 @@
+﻿@model Cursova.ViewModels.SupplierViewModel
+
+<h2>Фільтрація постачальників</h2>
+
+<form asp-action="SupplierFilter" method="post">
+    <div>
+        <label asp-for="SupplierName">Ім'я постачальника</label>
+        <input asp-for="SupplierName" />
+    </div>
+    <div>
+        <label asp-for="Address">Адреса постачальника</label>
+        <input asp-for="Address" />
+    </div>
+    <div>
+        <label asp-for="Phone">Телефон постачальника</label>
+        <input asp-for="Phone" />
+    </div>
+    <button type="submit">Фільтрувати</button>
+</form>
+
+@if (ViewBag.Suppliers != null)
+{
+        <table>
+            <thead>
+                <tr>
+                    <th>Ім'я постачальника</th>
+                    <th>Адреса</th>
+                    <th>Телефон</th>
+                </tr>
+            </thead>
+            <tbody>
+            @foreach (var supplier in ViewBag.Suppliers)
+            {
+                    <tr>
+                        <td>@supplier.SupplierName</td>
+                        <td>@supplier.Address</td>
+                        <td>@supplier.Phone</td>
+                    </tr>
+            }
+            </tbody>
+        </table>
+}
+else
+{
+        <p>Постачальників не знайдено</p>
+}

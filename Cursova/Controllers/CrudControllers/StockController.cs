@@ -1,9 +1,11 @@
 ﻿using Cursova.Domain.Repositories.Abstract;
 using Cursova.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Cursova.Controllers.CrudControllers
 {
+    [Authorize]
     public class StockController : Controller
     {
         private readonly IStockService _stockService;

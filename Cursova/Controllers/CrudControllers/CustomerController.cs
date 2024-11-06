@@ -1,9 +1,12 @@
 ﻿using Cursova.Models;
 using Microsoft.AspNetCore.Mvc;
 using Cursova.Domain.Repositories.Abstract;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Cursova.Controllers.CrudControllers
 {
+    [Authorize]
+
     public class CustomerController : Controller
     {
         private readonly ICustomerService _customerService;

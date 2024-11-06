@@ -1,5 +1,6 @@
 ﻿using Cursova.Domain.Repositories.Abstract;
 using Cursova.Models;
+using Cursova.ViewModels;
 
 namespace Cursova.Domain.Repositories.EntityFramework
 {
@@ -36,6 +37,29 @@ namespace Cursova.Domain.Repositories.EntityFramework
                 _context.SaveChanges();
             }
         }
+
+        public List<Supplier> GetSupplier(SupplierViewModel filter)
+        {
+            var query = _context.Suppliers.AsQueryable();
+
+            if (!string.IsNullOrEmpty(filter.SupplierName))
+            {
+                query = query.Where(s => s.SupplierName.Contains(filter.SupplierName));
+            }
+
+            if (!string.IsNullOrEmpty(filter.Address))
+            {
+                query = query.Where(s => s.Address.Contains(filter.Address));
+            }
+
+            if (!string.IsNullOrEmpty(filter.Phone))
+            {
+                query = query.Where(s => s.Phone.Contains(filter.Phone));
+            }
+
+            return query.ToList();
+        }
+
         //8
         public List<Supplier> GetProductsBySupplier(int supplierId)
         {

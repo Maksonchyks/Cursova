@@ -1,0 +1,46 @@
+﻿@model Cursova.ViewModels.CustomerViewModel
+
+<h2>Фільтрація клієнтів</h2>
+
+<form asp-action="CustomerFilter" method="post">
+    <div>
+        <label asp-for="CustomerName">Ім'я клієнта</label>
+        <input asp-for="CustomerName" />
+    </div>
+    <div>
+        <label asp-for="Address">Адреса клієнта</label>
+        <input asp-for="Address" />
+    </div>
+    <div>
+        <label asp-for="Phone">Телефон клієнта</label>
+        <input asp-for="Phone" />
+    </div>
+    <button type="submit">Фільтрувати</button>
+</form>
+
+@if (ViewBag.Customers != null)
+{
+        <table>
+            <thead>
+                <tr>
+                    <th>Ім'я клієнта</th>
+                    <th>Адреса</th>
+                    <th>Телефон</th>
+                </tr>
+            </thead>
+            <tbody>
+            @foreach (var customer in ViewBag.Customers)
+            {
+                    <tr>
+                        <td>@customer.CustomerName</td>
+                        <td>@customer.Address</td>
+                        <td>@customer.Phone</td>
+                    </tr>
+            }
+            </tbody>
+        </table>
+}
+else
+{
+        <p>Клієнтів не знайдено</p>
+}

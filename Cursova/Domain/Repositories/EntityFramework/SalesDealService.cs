@@ -39,6 +39,9 @@ namespace Cursova.Domain.Repositories.EntityFramework
                 _context.SaveChanges();
             }
         }
+
+
+
         //4
         public List<SalesDeal> GetDealsByProductAndSupplier(int productId, int supplierId, DateTime startDate, DateTime endDate)
         {
