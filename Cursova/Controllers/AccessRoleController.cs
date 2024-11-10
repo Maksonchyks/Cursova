@@ -51,7 +51,7 @@ namespace Cursova.Controllers
             return View(model);
         }
 
-
+        [Authorize(Roles = "Owner,Admin")]
         public IActionResult AccessIndex()
         {
             return View();

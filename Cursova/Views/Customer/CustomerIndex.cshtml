@@ -1,27 +1,30 @@
 ﻿@model Cursova.Models.Customer
-
-<h2>Управління користувачами</h2>
+@{
+    ViewData["Title"] = "Check Data";
+    var customers = ViewData["Customers"] as List<Cursova.Models.Customer>;
+}
+<h2>Управління покупцями</h2>
 
 <!-- Форма для створення користувача -->
 <form asp-action="Create" method="post">
     <div asp-validation-summary="All" class="text-danger"></div>
 
     <div class="form-group">
-        <label asp-for="CustomerName" class="control-label"></label>
+        <label for="text" class="control-label">Ім'я користувача</label>
         <input asp-for="CustomerName" class="form-control" />
         <span asp-validation-for="CustomerName" class="text-danger"></span>
     </div>
     <div class="form-group">
-        <label asp-for="Address" class="control-label"></label>
+        <label for="address" class="control-label">Адреса покупця</label>
         <input asp-for="Address" class="form-control" />
         <span asp-validation-for="Address" class="text-danger"></span>
     </div>
     <div class="form-group">
-        <label asp-for="Phone" class="control-label"></label>
+        <label for="phone" class="control-label">Телефон покупця</label>
         <input asp-for="Phone" class="form-control" />
         <span asp-validation-for="Phone" class="text-danger"></span>
     </div>
-    <button type="submit" class="btn btn-primary">Створити користувача</button>
+    <button type="submit" class="btn btn-primary">Добавити покупця</button>
 </form>
 
 <hr />
@@ -31,29 +34,29 @@
     <div asp-validation-summary="All" class="text-danger"></div>
 
     <div class="form-group">
-        <label asp-for="CustomerId" class="control-label"></label>
+        <label for="number" class="control-label">Айді покупця</label>
         <input asp-for="CustomerId" class="form-control" />
         <span asp-validation-for="CustomerId" class="text-danger"></span>
     </div>
     
     <div class "form-group">
-        <label asp-for="CustomerName" class="control-label"></label>
+        <label for="text" class="control-label">Ім'я покупця</label>
         <input asp-for="CustomerName" class="form-control"></input>
         <span asp-validation-for="CustomerName" class="text-danger"></span>
     </div>
 
     <div class "form-group">
-        <label asp-for="Address" class="control-label"></label>
+        <label for="address" class="control-label">Адреса покупця</label>
         <input asp-for="Address" class="form-control"></input>
         <span asp-validation-for="Address" class="text-danger"></span>
     </div>
 
     <div class "form-group">
-        <label asp-for="Phone" class="control-label"></label>
+        <label for="number" class="control-label">Телефон покупця</label>
         <input asp-for="Phone" class="form-control"></input>
         <span asp-validation-for="Phone" class="text-danger"></span>
     </div>
-    <button type="submit" class="btn btn-primary">Редагувати користувача</button>
+    <button type="submit" class="btn btn-primary">Редагувати покупця</button>
 </form>
 
 <hr />
@@ -63,9 +66,34 @@
     <div asp-validation-summary="All" class="text-danger"></div>
 
     <div>
-        <label asp-for="CustomerId" class="control-label"></label>
+        <label for="number" class="control-label">Айді покупця</label>
         <input asp-for="CustomerId" class="form-control"></input>
         <span asp-validation-for="CustomerId" class="text-danger"></span>
     </div>
-    <button type="submit" class="btn btn-danger">Видалити користувача</button>
+    <button type="submit" class="btn btn-danger">Видалити покупця</button>
 </form>
+
+
+
+<h2>Покупці</h2>
+<table>
+    <thead>
+        <tr>
+            <th>Айді покупця</td>
+            <th>Ім'я </td>
+            <th>Адреса</td>
+            <th>Телефон</td>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var customer in customers)
+        {
+                <tr>
+                    <td>@customer.CustomerId</td>
+                    <td>@customer.CustomerName</td>
+                    <td>@customer.Address</td>
+                    <td>@customer.Phone</td>
+                </tr>
+        }
+    </tbody>
+</table>

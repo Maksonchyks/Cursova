@@ -2,9 +2,13 @@
 using Cursova.Domain.Repositories.Abstract;
 using Cursova.Models;
 using Cursova.ViewModels;
+using Microsoft.AspNetCore.Authorization;
+using System.Data;
 
 namespace Cursova.Controllers
 {
+    [Authorize(Roles = "Owner,Admin,Operator")]
+
     public class SelectDataController : Controller
     {
         private readonly ICustomerService _customerService;
@@ -52,11 +56,13 @@ namespace Cursova.Controllers
                     return RedirectToAction("SupplierFilter");
                 case "Stock":
                     return RedirectToAction("StockFilter");
+                case "SalesDeal":
+                    return RedirectToAction("DealIndex", "NotificationDeal");
                 default:
                     return RedirectToAction("Index");
             }
         }
-
+        
         public IActionResult SelectIndex() 
         {
             return View();

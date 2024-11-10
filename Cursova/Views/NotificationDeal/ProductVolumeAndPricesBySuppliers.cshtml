@@ -1,0 +1,29 @@
+﻿@model IEnumerable<dynamic>
+
+<h2>Обсяг і ціни на товар по постачальниках</h2>
+
+<form method="get" asp-action="ProductVolumeAndPricesBySuppliers">
+    <label>Назва товару:</label>
+    <input type="text" name="productName" required />
+
+    <button type="submit">Показати</button>
+</form>
+
+<table>
+    <tr>
+        <th>Товар</th>
+        <th>Постачальник</th>
+        <th>Кількість</th>
+        <th>Ціна</th>
+    </tr>
+    @foreach (var item in Model)
+    {
+            <tr>
+                <td>@item.ProductName</td>
+                <td>@item.SupplierName</td>
+                <td>@item.Quantity</td>
+                <td>@item.SalePrice</td>
+            </tr>
+    }
+</table>
+        <button onclick="history.back()">Назад</button>

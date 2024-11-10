@@ -1,0 +1,22 @@
+﻿@{
+    ViewData["Title"] = "Вибір запиту";
+}
+
+<h2>Оберіть запит для відображення даних</h2>
+
+<div>
+    <ul>
+        <li><a asp-action="ActiveCustomers" asp-controller="NotificationDeal">Одержати відомості про найбільш активних покупців</a></li>
+        <li><a asp-action="ProductVolumeAndPricesBySuppliers" asp-controller="NotificationDeal">Одержати відомості про обсяг і ціни на товар по всіх постачальниках</a></li>
+        <li><a asp-action="CustomersByProductAndPeriod" asp-controller="NotificationDeal">Одержати відомості про покупців товару за вказаний період або по всіх постачальниках</a></li>
+        <li><a asp-action="ProductSuppliesBySupplierAndPeriod" asp-controller="NotificationDeal">Одержати відомості про поставки товару постачальником за певний період</a></li>
+        <li><a asp-action="SuppliesByAgreement" asp-controller="NotificationDeal">Одержати відомості про поставки за номером угоди</a></li>
+        <li><a asp-action="SalesVolumeByProductAndPeriod" asp-controller="NotificationDeal">Одержати дані про обсяг продажів товару за певний період</a></li>
+        <li><a asp-action="WarehouseProfitability" asp-controller="NotificationDeal">Одержати дані про рентабельність складу за період</a></li>
+        <li><a asp-action="SupplierInventory" asp-controller="NotificationDeal">Одержати номенклатуру та обсяг товарів зазначеного постачальника</a></li>
+        <li><a asp-action="CustomersByProductAndVolume" asp-controller="NotificationDeal">Одержати перелік покупців, що купили товар за певний період</a></li>
+        <li><a asp-action="SuppliersByProductAndVolume" asp-controller="NotificationDeal">Одержати перелік постачальників товару за період</a></li>
+    </ul>
+            <button onclick="history.back()">Назад</button>
+
+</div>

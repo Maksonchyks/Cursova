@@ -1,0 +1,39 @@
+﻿@model dynamic
+
+<h2>Покупці товару</h2>
+
+<form method="get" asp-action="CustomersByProductAndVolume">
+    <label>Назва товару:</label>
+    <input type="text" name="productName" required />
+
+    <label>Дата початку:</label>
+    <input type="date" name="startDate" />
+
+    <label>Дата завершення:</label>
+    <input type="date" name="endDate" />
+
+    <label>Мінімальна кількість:</label>
+    <input type="number" name="minQuantity" />
+
+    <button type="submit">Пошук</button>
+</form>
+
+@if (Model != null)
+{
+        <p>Загальна кількість покупців: @Model.TotalCustomers</p>
+
+        <table>
+            <tr>
+                <th>Покупець</th>
+                <th>Загальна кількість покупок</th>
+            </tr>
+        @foreach (var item in Model.Customers)
+        {
+                    <tr>
+                        <td>@item.CustomerName</td>
+                        <td>@item.TotalPurchases</td>
+                    </tr>
+        }
+        </table>
+}
+        <button onclick="history.back()">Назад</button>

@@ -2,20 +2,28 @@
 using Microsoft.AspNetCore.Mvc;
 using Cursova.Domain.Repositories.Abstract;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.EntityFrameworkCore;
+using System.Diagnostics.CodeAnalysis;
 
 namespace Cursova.Controllers.CrudControllers
 {
-    [Authorize]
+    [Authorize(Roles = "Owner,Admin,Operator")]
 
     public class CustomerController : Controller
     {
+        private readonly AppDbContext _context;
         private readonly ICustomerService _customerService;
-        public CustomerController(ICustomerService customerService)
+        public CustomerController
+        (   ICustomerService customerService,
+            AppDbContext context
+        )
         {
             _customerService = customerService;
+            _context = context;
         }
         public IActionResult CustomerIndex()
         {
+            ViewData["Customers"] = _context.Customers.ToList();
             return View();
         }
         [HttpPost]

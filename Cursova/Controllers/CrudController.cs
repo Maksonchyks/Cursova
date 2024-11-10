@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Cursova.Controllers
 {
-    [Authorize]
+    [Authorize(Roles = "Owner,Admin,Operator")]
     public class CrudController : Controller
     {
         [HttpPost]
@@ -28,6 +28,7 @@ namespace Cursova.Controllers
                     return BadRequest("Invalid entity type.");
             }
         }
+
         public IActionResult CrudIndex()
         {
             return View();

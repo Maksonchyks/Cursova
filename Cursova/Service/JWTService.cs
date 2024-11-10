@@ -32,7 +32,7 @@ namespace Cursova.Service
             var tokenDescriptor = new SecurityTokenDescriptor
             {
                 Subject = new ClaimsIdentity(claims),
-                Expires = DateTime.UtcNow.AddMinutes(5),
+                Expires = DateTime.UtcNow.AddMinutes(10),
                 Issuer = _issuer,
                 Audience = _audience,
                 SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)

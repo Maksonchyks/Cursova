@@ -2,19 +2,25 @@
 using Microsoft.AspNetCore.Mvc;
 using Cursova.Domain.Repositories.Abstract;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.EntityFrameworkCore;
 
 namespace Cursova.Controllers.CrudControllers
 {
-    [Authorize]
+    [Authorize(Roles = "Owner,Admin,Operator")]
     public class SupplierController : Controller
     {
         private readonly ISupplierService _supllierService;
-        public SupplierController(ISupplierService supplierService)
+        private readonly AppDbContext _context;
+
+        public SupplierController(ISupplierService supplierService, AppDbContext context)
         {
             _supllierService = supplierService;
+            _context=context;
         }
         public IActionResult SupplierIndex()
         {
+            ViewData["Stocks"] = _context.Stocks.ToList();
+            ViewData["Suppliers"] = _context.Suppliers.ToList();
             return View();
         }
         [HttpPost]

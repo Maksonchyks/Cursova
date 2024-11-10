@@ -1,38 +1,43 @@
 ﻿@model Cursova.Models.Stock
+@{
+    ViewData["Title"] = "Check Data";
+    var stocks = ViewData["Stocks"] as List<Cursova.Models.Stock>;
+    var suppliers = ViewData["Suppliers"] as List<Cursova.Models.Supplier>;
 
-<h2>Управління користувачами</h2>
+}
+<h2>Управління товарами</h2>
 
 <!-- Форма для створення користувача -->
 <form asp-action="Create" method="post">    
     <div asp-validation-summary="All" class="text-danger"></div>
 
     <div class="form-group">
-        <label asp-for="ProductName" class="control-label"></label>
+        <label for="text" class="control-label">Назва товару</label>
         <input asp-for="ProductName" class="form-control" />
         <span asp-validation-for="ProductName" class="text-danger"></span>
     </div>
     <div class="form-group">
-        <label asp-for="Unit" class="control-label"></label>
+        <label for="text" class="control-label">Одиниці</label>
         <input asp-for="Unit" class="form-control" />
         <span asp-validation-for="Unit" class="text-danger"></span>
     </div>
     <div class="form-group">
-        <label asp-for="Quantity" class="control-label"></label>
+        <label for="number" class="control-label">Кількість</label>
         <input asp-for="Quantity" class="form-control" />
         <span asp-validation-for="Quantity" class="text-danger"></span>
     </div>
     <div class="form-group">
-        <label asp-for="PurchasePrice" class="control-label"></label>
+        <label for="number" class="control-label">Ціна покупки товару</label>
         <input asp-for="PurchasePrice" class="form-control" />
         <span asp-validation-for="PurchasePrice" class="text-danger"></span>
     </div>
     <div class="form-group">
-        <label asp-for="SalePrice" class="control-label"></label>
+        <label for="number" class="control-label">Ціна продажу товару</label>
         <input asp-for="SalePrice" class="form-control" />
         <span asp-validation-for="SalePrice" class="text-danger"></span>
     </div>
     <div class="form-group">
-        <label asp-for="FrSupplierId" class="control-label"></label>
+        <label for="number" class="control-label">Айді постачальника</label>
         <input asp-for="FrSupplierId" class="form-control" />
         <span asp-validation-for="FrSupplierId" class="text-danger"></span>
     </div>
@@ -46,40 +51,40 @@
     <div asp-validation-summary="All" class="text-danger"></div>
 
     <div class="form-group">
-        <label asp-for="StockId" class="control-label"></label>
+        <label for="number" class="control-label">Айді товару</label>
         <input asp-for="StockId" class="form-control" />
         <span asp-validation-for="StockId" class="text-danger"></span>
     </div>
 
     <div class "form-group">
-        <label asp-for="ProductName" class="control-label"></label>
+        <label for="text" class="control-label">Назва товару</label>
         <input asp-for="ProductName" class="form-control"></input>
         <span asp-validation-for="ProductName" class="text-danger"></span>
     </div>
 
     <div class "form-group">
-        <label asp-for="Unit" class="control-label"></label>
+        <label for="text" class="control-label">Одиниці</label>
         <input asp-for="Unit" class="form-control"></input>
         <span asp-validation-for="Unit" class="text-danger"></span>
     </div>
 
     <div class "form-group">
-        <label asp-for="Quantity" class="control-label"></label>
+        <label for="number" class="control-label">Кількість</label>
         <input asp-for="Quantity" class="form-control"></input>
         <span asp-validation-for="Quantity" class="text-danger"></span>
     </div>
     <div class "form-group">
-        <label asp-for="PurchasePrice" class="control-label"></label>
+        <label for="number" class="control-label">Ціна покупки товару</label>
         <input asp-for="PurchasePrice" class="form-control"></input>
         <span asp-validation-for="PurchasePrice" class="text-danger"></span>
     </div>
     <div class "form-group">
-        <label asp-for="SalePrice" class="control-label"></label>
+        <label for="number" class="control-label">Ціна продажу товару</label>
         <input asp-for="SalePrice" class="form-control"></input>
         <span asp-validation-for="SalePrice" class="text-danger"></span>
     </div>
     <div class "form-group">
-        <label asp-for="FrSupplierId" class="control-label"></label>
+        <label for="number" class="control-label">Айді постачальника</label>
         <input asp-for="FrSupplierId" class="form-control"></input>
         <span asp-validation-for="FrSupplierId" class="text-danger"></span>
     </div>
@@ -93,9 +98,63 @@
     <div asp-validation-summary="All" class="text-danger"></div>
 
     <div>
-        <label asp-for="StockId" class="control-label"></label>
+        <label for="number" class="control-label">Айді товару</label>
         <input asp-for="StockId" class="form-control"></input>
         <span asp-validation-for="StockId" class="text-danger"></span>
     </div>
     <button type="submit" class="btn btn-danger">Видалити користувача</button>
 </form>
+
+
+ <h2>Товари</h2>
+<table>
+    <thead>
+        <tr>
+            <th>Айді товару</th>
+            <th>Айді постачальника</th>
+            <th>Назва товару</th>
+            <th>Одиниця</th>
+            <th>Кількість</th>
+            <th>Ціна купільви</th>
+            <th>Ціна продажу</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var stock in stocks)
+        {
+                    <tr>
+                        <td>@stock.StockId</td>
+                        <td>@stock.FrSupplierId</td>
+                        <td>@stock.ProductName</td>
+                        <td>@stock.Unit</td>
+                        <td>@stock.Quantity</td>
+                        <td>@stock.PurchasePrice.ToString("F3")</td>
+                        <td>@stock.SalePrice.ToString("F3")</td>
+                    </tr>
+        }
+    </tbody>
+</table>
+
+
+<h2>Постачальники</h2>
+<table>
+    <thead>
+        <tr>
+            <th>Айді постачальника</th>
+            <th>Назва постачальника</th>
+            <th>Адреса</th>
+            <th>Телефон</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var supplier in suppliers)
+        {
+                    <tr>
+                        <td>@supplier.SupplierId</td>
+                        <td>@supplier.SupplierName</td>
+                        <td>@supplier.Address</td>
+                        <td>@supplier.Phone</td>
+                    </tr>
+        }
+    </tbody>
+</table>

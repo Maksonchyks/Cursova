@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Cursova.Controllers.CrudControllers
 {
-    [Authorize]
+    [Authorize(Roles = "Owner,Admin,Operator")]
     public class SalesDealController : Controller
     {
         private readonly ISalesDealService _salesDealService;
@@ -17,6 +17,10 @@ namespace Cursova.Controllers.CrudControllers
         }
         public IActionResult SalesDealIndex()
         {
+            ViewData["Customers"] = _context.Customers.ToList();
+            ViewData["SalesDeals"] = _context.SalesDeals.ToList();
+            ViewData["Stocks"] = _context.Stocks.ToList();
+            ViewData["Suppliers"] = _context.Suppliers.ToList();
             return View();
         }
         

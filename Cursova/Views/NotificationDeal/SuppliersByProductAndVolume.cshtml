@@ -1,0 +1,39 @@
+﻿@model dynamic
+
+<h2>Постачальники товару</h2>
+
+<form method="get" asp-action="SuppliersByProductAndVolume">
+    <label>Назва товару:</label>
+    <input type="text" name="productName" required />
+
+    <label>Мінімальна кількість:</label>
+    <input type="number" name="minQuantity" />
+
+    <label>Дата початку:</label>
+    <input type="date" name="startDate" />
+
+    <label>Дата завершення:</label>
+    <input type="date" name="endDate" />
+
+    <button type="submit">Пошук</button>
+</form>
+
+@if (Model != null)
+{
+        <p>Загальна кількість постачальників: @Model.TotalSuppliers</p>
+
+        <table>
+            <tr>
+                <th>Постачальник</th>
+                <th>Загальна кількість</th>
+            </tr>
+        @foreach (var item in Model.Suppliers)
+        {
+                    <tr>
+                        <td>@item.SupplierName</td>
+                        <td>@item.TotalSupplied</td>
+                    </tr>
+        }
+        </table>
+}
+        <button onclick="history.back()">Назад</button>

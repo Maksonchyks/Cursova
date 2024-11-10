@@ -1,0 +1,33 @@
+﻿@model IEnumerable<dynamic>
+
+<h2>Поставки по номеру угоди</h2>
+
+<form method="get" asp-action="SuppliesByAgreement">
+    <label>Номер угоди:</label>
+    <input type="number" name="DealId" required />
+
+    <button type="submit">Пошук</button>
+</form>
+
+<table>
+    <tr>
+        <th>Номер угоди</th>
+        <th>Товар</th>
+        <th>Постачальник</th>
+        <th>Покупець</th>
+        <th>Штук продано</th>
+        <th>Сума</th>
+    </tr>
+    @foreach (var item in Model)
+    {
+            <tr>
+                <td>@item.DealId</td>
+                <td>@item.ProductName</td>
+                <td>@item.SupplierName</td>
+                <td>@item.CustomerName</td>
+                <td>@item.Quantity</td>
+                <td>@item.TotalAmount</td>
+            </tr>
+    }
+</table>
+        <button onclick="history.back()">Назад</button>

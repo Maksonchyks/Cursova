@@ -40,6 +40,13 @@ namespace Cursova.Domain.Repositories.EntityFramework
             }
         }
 
+        public List<Customer> GetMostActiveCustomers()
+        {
+            return _context.Customers
+                .OrderByDescending(c => c.SalesDeals.Count)
+                .Take(10)
+                .ToList();
+        }
 
 
         //4

@@ -1,5 +1,11 @@
 ﻿@model Cursova.Models.Supplier
-
+@{
+    ViewData["Title"] = "Check Data";
+    var customers = ViewData["Customers"] as List<Cursova.Models.Customer>;
+    var salesDeals = ViewData["SalesDeals"] as List<Cursova.Models.SalesDeal>;
+    var stocks = ViewData["Stocks"] as List<Cursova.Models.Stock>;
+    var suppliers = ViewData["Suppliers"] as List<Cursova.Models.Supplier>;
+}
 <h2>Управління постачальниками</h2>
 
 <!-- Форма для створення постачальника -->
@@ -7,17 +13,17 @@
     <div asp-validation-summary="All" class="text-danger"></div>
 
     <div class="form-group">
-        <label asp-for="SupplierName" class="control-label"></label>
+        <label for="text" class="control-label">Назва постачальника</label>
         <input asp-for="SupplierName" class="form-control" />
         <span asp-validation-for="SupplierName" class="text-danger"></span>
     </div>
     <div class="form-group">
-        <label asp-for="Address" class="control-label"></label>
+        <label for="number" class="control-label">Адреса постачальника</label>
         <input asp-for="Address" class="form-control" />
         <span asp-validation-for="Address" class="text-danger"></span>
     </div>
     <div class="form-group">
-        <label asp-for="Phone" class="control-label"></label>
+        <label for="phone" class="control-label">Телефон постачальника</label>
         <input asp-for="Phone" class="form-control" />
         <span asp-validation-for="Phone" class="text-danger"></span>
     </div>
@@ -31,22 +37,22 @@
     <div asp-validation-summary="All" class="text-danger"></div>
 
     <div class="form-group">
-        <label asp-for="SupplierId" class="control-label"></label>
+        <label for="number" class="control-label">Айді постачальника</label>
         <input asp-for="SupplierId" class="form-control" />
         <span asp-validation-for="SupplierId" class="text-danger"></span>
     </div>
     <div class="form-group">
-        <label asp-for="SupplierName" class="control-label"></label>
+        <label for="text" class="control-label">Назва постачальника</label>
         <input asp-for="SupplierName" class="form-control" />
         <span asp-validation-for="SupplierName" class="text-danger"></span>
     </div>
     <div class="form-group">
-        <label asp-for="Address" class="control-label"></label>
+        <label for="address" class="control-label">Адреса постачальника</label>
         <input asp-for="Address" class="form-control" />
         <span asp-validation-for="Address" class="text-danger"></span>
     </div>
     <div class="form-group">
-        <label asp-for="Phone" class="control-label"></label>
+        <label for="phone" class="control-label">Телефон постачальника</label>
         <input asp-for="Phone" class="form-control" />
         <span asp-validation-for="Phone" class="text-danger"></span>
     </div>
@@ -60,9 +66,32 @@
     <div asp-validation-summary="All" class="text-danger"></div>
 
     <div class="form-group">
-        <label asp-for="SupplierId" class="control-label"></label>
+        <label for="number" class="control-label">Айді постачальника</label>
         <input asp-for="SupplierId" class="form-control" />
         <span asp-validation-for="SupplierId" class="text-danger"></span>
     </div>
     <button type="submit" class="btn btn-danger">Видалити постачальника</button>
 </form>
+
+<h2>Suppliers</h2>
+<table>
+    <thead>
+        <tr>
+            <th>Айді постачальника</th>
+            <th>Назва постачальника</th>
+            <th>Адреса</th>
+            <th>Номер</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var supplier in suppliers)
+        {
+                    <tr>
+                        <td>@supplier.SupplierId</td>
+                        <td>@supplier.SupplierName</td>
+                        <td>@supplier.Address</td>
+                        <td>@supplier.Phone</td>
+                    </tr>
+        }
+    </tbody>
+</table>

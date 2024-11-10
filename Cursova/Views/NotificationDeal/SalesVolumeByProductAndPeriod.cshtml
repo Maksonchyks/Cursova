@@ -1,0 +1,33 @@
+﻿@model IEnumerable<dynamic>
+
+<h2>Обсяг продажів товару</h2>
+
+<form method="get" asp-action="SalesVolumeByProductAndPeriod">
+    <label>Назва товару:</label>
+    <input type="text" name="productName" required />
+
+    <label>Дата початку:</label>
+    <input type="date" name="startDate" />
+
+    <label>Дата завершення:</label>
+    <input type="date" name="endDate" />
+
+    <button type="submit">Пошук</button>
+</form>
+
+<table>
+    <tr>
+        <th>Постачальник</th>
+        <th>Кількість</th>
+        <th>Загальна вартість</th>
+    </tr>
+    @foreach (var item in Model)
+    {
+            <tr>
+                <td>@item.SupplierName</td>
+                <td>@item.TotalQuantity</td>
+                <td>@item.TotalRevenue</td>
+            </tr>
+    }
+</table>
+        <button onclick="history.back()">Назад</button>

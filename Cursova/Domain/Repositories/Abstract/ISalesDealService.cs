@@ -7,6 +7,10 @@ namespace Cursova.Domain.Repositories.Abstract
         void AddSalesDeal(SalesDeal salesDeal);
         void UpdateSalesDeal(SalesDeal salesDeal);
         void DeleteSalesDeal(int salesDealId);
+
+        List<Customer> GetMostActiveCustomers();
+
+
         //4
 
         //відомість про поставку за айді товару, за постачальником за період

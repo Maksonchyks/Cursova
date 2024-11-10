@@ -1,0 +1,44 @@
+﻿@model IEnumerable<dynamic>
+
+<h2>Покупці товару за період</h2>
+
+<form method="get" asp-action="ProductSuppliesBySupplierAndPeriod">
+    <label>Назва товару:</label>
+    <input type="text" name="productName" required />
+
+    <label>Постачальник:</label>
+    <input type="text" name="supplierName" />
+
+    <label>Дата початку:</label>
+    <input type="date" name="startDate" />
+
+    <label>Дата завершення:</label>
+    <input type="date" name="endDate" />
+
+    <button type="submit">Пошук</button>
+</form>
+
+<table>
+    <tr>
+        <th>Товар</th>
+        <th>Покупець</th>
+        <th>Кількість одиниць товару</th>
+        <th>Ціна закупки</th>
+        <th>Ціна продажу</th>
+        <th>Кількість угод</th>
+        <th>Дата покупки</th>
+    </tr>
+    @foreach (var item in Model)
+    {
+                <tr>
+                    <td>@item.ProductName</td>
+                    <td>@item.CustomerName</td>
+                    <td>@item.ProductQuantity</td>
+                    <td>@item.ProductPurchasePrice</td>
+                    <td>@item.ProductSalePrice</td>
+                    <td>@item.Quantity</td>
+                    <td>@item.PurchaseDate.ToShortDateString()</td>
+                </tr>
+    }
+</table>
+        <button onclick="history.back()">Назад</button>

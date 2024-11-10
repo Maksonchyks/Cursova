@@ -1,0 +1,37 @@
+﻿@model dynamic
+@{
+    ViewData["Title"] = "Рентабельність складу";
+}
+
+<h2>Рентабельність складу</h2>
+
+<table>
+    <tr>
+        <th>Загальна сума продажів:</th>
+        <td>@Model.TotalSalesVolume.ToString("C")</td>
+    </tr>
+    <tr>
+        <th>Початкова вартість проданих продуктів:</th>
+        <td>@Model.TotalPurchaselCost.ToString("C")</td>
+    </tr>
+    <tr>
+        <th>Прибуток:</th>
+        <td>@Model.Profit.ToString("C")</td>
+    </tr>
+    <tr>
+        <th>Накладні витрати (оренда + комунальні послуги):</th>
+        <td>@Model.OverheadCosts.ToString("C")</td>
+    </tr>
+    <tr>
+        <th>Оренда:</th>
+        <td>@Model.RentCost.ToString("C")</td>
+    </tr>
+    <tr>
+        <th>Комунальні послуги:</th>
+        <td>@Model.UtilitiesCost.ToString("C")</td>
+    </tr>
+    <tr>
+        <th>Рентабельність:</th>
+        <td>@Model.ProfitabilityRatio.ToString("P2")</td>
+    </tr>
+</table>
